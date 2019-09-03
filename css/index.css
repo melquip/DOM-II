@@ -351,3 +351,11 @@ img {
   background: #FFFFFF;
   color: #17A2B8;
 }
+.main-navigation {
+  z-index: 1;
+}
+h2,
+p,
+img {
+  transform: translateY(100%);
+}

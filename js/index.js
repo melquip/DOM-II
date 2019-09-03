@@ -99,5 +99,16 @@ window.addEventListener('load', function(e) {
 	// stoping links from reloading page
 	links.forEach(link => link.addEventListener('click', function(e) {
 		e.preventDefault();
+		// stretch GSAP
+		TweenLite.to(link, 0.5, { ease: Elastic.easeOut.config(1, 0.3), y: "20%" });
+		setTimeout(function() {
+			TweenLite.to(link, 0.5, { ease: Elastic.easeOut.config(1, 0.3), y: "0%" });
+		}, 500);
 	}));
+
+	// stretch GSAP
+	TweenLite.to(allParagraphs, 2, { ease: Bounce.easeOut, y: "0%" });
+	TweenLite.to(allHeading2, 1.75, { ease: Bounce.easeOut, y: "0%" });
+	TweenLite.to(images, 1.5, { ease: Bounce.easeOut, y: "0%" });
+	
 });
