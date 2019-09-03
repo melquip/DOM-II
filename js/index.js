@@ -5,8 +5,11 @@ let body = document.querySelector('body');
 let allHeading2 = document.querySelectorAll('h2');
 let allParagraphs = document.querySelectorAll('p');
 let images = document.querySelectorAll('img');
+let destinations = document.querySelectorAll('.destination');
 let buttons = document.querySelectorAll('.btn');
 buttons.forEach(button => button.setAttribute('data-text', button.textContent));
+
+let links = document.querySelectorAll('a');
 // load event
 window.addEventListener('load', function(e) {
 	console.log('Hello! Welcome to Fun Bus website!');
@@ -33,6 +36,7 @@ window.addEventListener('load', function(e) {
 	}
 	// mousedown event
 	buttons.forEach(button => button.addEventListener('mousedown', function(e) {
+		e.stopPropagation();
 		if(e.which === 1 && !isDragging) {
 			// mousemove event
 			this.addEventListener('mousemove', btnMouseMove);
@@ -87,4 +91,13 @@ window.addEventListener('load', function(e) {
 	window.addEventListener('keypress', function(e) {
 		alert('You can\'t write here');
 	});
+
+	// never used event because of stopPropagation
+	destinations.forEach(dest => dest.addEventListener('mousedown', function(e) {
+		console.error('This message should not be appearing in the console!');
+	}));
+	// stoping links from reloading page
+	links.forEach(link => link.addEventListener('click', function(e) {
+		e.preventDefault();
+	}));
 });
