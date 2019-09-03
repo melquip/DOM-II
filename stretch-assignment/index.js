@@ -1,15 +1,4 @@
 /*
- Rockets:
-  * When a block is clicked, it should go to the top of the stack.
-
- Travelers:
-  * While a mouse is clicked down on a box, it should move to the right (It should coninuously move, there is no limit on how far it will go).
-  
-
-  Rockets:
-    
-  * Animate the rockets, visually show them being transported to the top.
-  
   Travelers:
     
   * Give the travelers a limit on the distance it can travel.
@@ -30,7 +19,7 @@ blocks.forEach((block, i) => {
 	block.style.transition = 'transform 1s ease-in-out';
 	block.style.marginLeft = '0px';
 	block.addEventListener('mouseup', function(e) {
-		if(e.which === 1 && blockCanAnim) {
+		if(e.which === 1 && blockCanAnim && !isMouseDown) {
 			blockCanAnim = false;
 			clearTimeout(blockGoLeft);
 			let index = Array.from(container.children).indexOf(this);
@@ -46,9 +35,10 @@ blocks.forEach((block, i) => {
 		}
 	});
 	block.addEventListener('mousedown', function() {
+		this.style.transition = 'transform 1s ease-in-out';
 		blockGoLeft = setTimeout(function() {
-			blockMouseDown = block;
 			isMouseDown = true;
+			blockMouseDown = block;
 		}, 100);
 	});
 });
@@ -58,8 +48,18 @@ container.addEventListener('mouseup', function(e) {
 });
 
 setInterval(function() {
-	if(isMouseDown) {
-		blockMouseDown.style.marginLeft = parseInt(blockMouseDown.style.marginLeft) + 1 + 'px';
+	if(blockMouseDown) {
+		let blockLeft = parseInt(blockMouseDown.style.marginLeft);
+		if(isMouseDown) {
+			// go right
+			if(blockLeft < container.scrollWidth - 100) {
+				blockMouseDown.style.marginLeft = blockLeft + 2 + 'px';
+			}
+		} else {
+			if(blockLeft > 0) {
+				blockMouseDown.style.marginLeft = blockLeft - 2 + 'px';
+			}
+		}
 	}
 }, 10);
 
