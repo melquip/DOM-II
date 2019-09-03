@@ -327,6 +327,7 @@ img {
   }
 }
 .home .content-pick .destination .btn {
+  user-select: none;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
