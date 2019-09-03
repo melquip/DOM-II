@@ -60,9 +60,14 @@ window.addEventListener('load', function(e) {
 	});
 	
 	// scroll event
-	body.addEventListener('scroll', function(e) {
+	let colorInterval;
+	window.addEventListener('scroll', function(e) {
 		console.log('Scrolling now...');
-		
+		clearInterval(colorInterval);
+		colorInterval = setTimeout(() => {
+			document.querySelectorAll('h1, h2, h3, h4, h5, h6')
+				.forEach(h2 => h2.style.color = 'rgb(' +Math.random()*255+ ', ' +Math.random()*255+ ', ' +Math.random()*255+ ')');
+		}, 333);
 	});
 	
 	// double click event
@@ -77,4 +82,9 @@ window.addEventListener('load', function(e) {
 			console.error('Could not copy text: ', err);
 		});
 	}));
+
+	// keypress event
+	window.addEventListener('keypress', function(e) {
+		alert('You can\'t write here');
+	});
 });
