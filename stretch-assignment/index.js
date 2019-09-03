@@ -1,12 +1,3 @@
-/*
-  Travelers:
-    
-  * Give the travelers a limit on the distance it can travel.
-  * When the mouse button is released, it should travel back to its original position.
-  * A mouse down that occurs during a transition back to the original position should send it traveling to the right again  from it's current position.
-  
-*/
-
 let container = document.querySelector('.blocks');
 let blocks = document.querySelectorAll('.block');
 
