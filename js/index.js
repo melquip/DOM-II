@@ -24,6 +24,14 @@ document.querySelector('body').addEventListener('scroll', function(e) {
 element.addEventListener('select', function(e) {
 
 });
-element.addEventListener('dblclick', function(e) {
-
-});
+document.querySelectorAll('p').forEach((paragraph) => paragraph.addEventListener('dblclick', function(e) {
+	if (!navigator.clipboard) {
+		alert('You can\'t doubleclick this content');
+		return;
+	}
+	navigator.clipboard.writeText(this.textContent).then(function() {
+		alert('You copied the paragraph!');
+	}, function(err) {
+		console.error('Could not copy text: ', err);
+	});
+}));
