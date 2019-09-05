@@ -107,8 +107,16 @@
       }
       
       .btn {
+        user-select: none;
         .button-creator(200px, 45px, @button-bg, @white, 1.8rem);     
       }
     }
   }
 }// home
+
+.main-navigation {
+  z-index: 1;
+}
+h2, p, img {
+  transform: translateY(100%);
+}
